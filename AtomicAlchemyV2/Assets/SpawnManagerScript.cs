@@ -12,7 +12,7 @@ public class SpawnManagerScript : MonoBehaviour
         SpawnPortal();
     }
     
-    private void SpawnPortal()
+    public void SpawnPortal()
     {
         // simple spawn not using MRUK
 

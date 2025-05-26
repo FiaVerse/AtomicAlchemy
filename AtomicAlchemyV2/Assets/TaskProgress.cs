@@ -6,7 +6,8 @@ public class TaskProgress : MonoBehaviour
     [Header("Reward")]
     public GameObject rewardPrefab;      // what spawns
     public Transform rewardSpawnPoint;   // where
-
+    public SpawnManagerScript spawnManager;
+    
     const string LastDateKey  = "Water_LastDate";
     const string StreakKey    = "Water_Streak";
 
@@ -21,12 +22,24 @@ public class TaskProgress : MonoBehaviour
             DateTime.MinValue;
 
         streak   = PlayerPrefs.GetInt(StreakKey, 0);
+        
+            // remove in production 
+            PlayerPrefs.DeleteKey("Water_LastDate");
+            PlayerPrefs.DeleteKey("Water_Streak");
+            PlayerPrefs.Save();
+
+            lastDate = PlayerPrefs.HasKey(LastDateKey) ?
+                DateTime.Parse(PlayerPrefs.GetString(LastDateKey)) :
+                DateTime.MinValue;
+
+            streak = PlayerPrefs.GetInt(StreakKey, 0);
     }
 
     // Hook this to your “I drank!” button
     public void OnDrinkLogged()
     {
-        DateTime today = DateTime.Today;
+        Debug.Log("on drink running");
+       DateTime today = DateTime.Today;
 
         // Already logged today? bail.
         if (lastDate == today)
@@ -61,6 +74,9 @@ public class TaskProgress : MonoBehaviour
        // Instantiate(rewardPrefab,
           //  rewardSpawnPoint ? rewardSpawnPoint.position : Vector3.zero,
           //  Quaternion.identity);
+          
+        
+          spawnManager.SpawnPortal();
 
         Debug.Log("Reward spawned — nice hydration streak!");
     }

@@ -1,0 +1,11 @@
+# auto-detect all text files and normalize to LF in repo
+* text=auto
+
+# if you really want Windows CRLF in your working copy:
+# uncomment the next line
+# * text eol=crlf
+
+# Unity scripts & shaders: keep LF for cross-platform consistency
+*.cs    text eol=lf
+*.shader text eol=lf
+*.uxml  text eol=lf

@@ -5,12 +5,9 @@ public class SpawnManagerScript : MonoBehaviour
 {
     public GameObject portalPrefab;
     public Transform playerCameraTransform; 
-    public Vector3 offsetFromPlayer = new Vector3(0f, -0.5f, 2f); // x, y, z offset
+    public Vector3 offsetFromPlayer = new Vector3(0f, -0.1f, 2f); // x, y, z offset
 
-    void Start()
-    {
-        SpawnPortal();
-    }
+    
     
     public void SpawnPortal()
     {
